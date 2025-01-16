@@ -35,6 +35,22 @@ export class Player {
     }
   }
 
+  moveUp(layout: MapLayout) {
+    this.move(0, -1, layout);
+  }
+
+  moveLeft(layout: MapLayout) {
+    this.move(-1, 0, layout);
+  }
+
+  moveDown(layout: MapLayout) {
+    this.move(0, 1, layout);
+  }
+
+  moveRight(layout: MapLayout) {
+    this.move(1, 0, layout);
+  }
+
   draw(ctx: CanvasRenderingContext2D, cellSize: number) {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x * cellSize, this.y * cellSize, this.size, this.size);
