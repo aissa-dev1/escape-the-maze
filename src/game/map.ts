@@ -39,7 +39,7 @@ export class Map {
       x: this.randomPlayerX(),
       y: this.randomPlayerY(),
       size: this.cellSize,
-      color: "#3498db",
+      color: "#2c3e50",
     });
   }
 
@@ -53,7 +53,7 @@ export class Map {
             this.board.styles?.backgroundColor || "#1a1a1a";
         }
         if (cell === 0) {
-          this.board.ctx.fillStyle = "#95a5a6";
+          this.board.ctx.fillStyle = "#1a1a1a";
         }
         if (cell === 1) {
           this.board.ctx.fillStyle = "#ecf0f1";
