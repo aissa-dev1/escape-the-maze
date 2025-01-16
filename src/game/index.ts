@@ -10,8 +10,8 @@ interface GameConfig {
 export class Game {
   private board: Board;
   private map: Map;
-  private stages: MapLayout[] = STAGES;
-  private currentStage = 0;
+  readonly stages: MapLayout[] = STAGES;
+  private _currentStage = 0;
   private _gameOver = false;
 
   constructor(config: GameConfig) {
@@ -27,12 +27,12 @@ export class Game {
     this.board.init();
     this.map.changeLayout(this.stages[this.currentStage]);
 
-    window.addEventListener("keydown", (e) => this.handleKeydown(e));
+    window.addEventListener("keyup", (e) => this.handleKeydown(e));
   }
 
   nextStage() {
     if (this.currentStage < this.stages.length - 1) {
-      this.currentStage++;
+      this._currentStage++;
       this.map.changeLayout(this.stages[this.currentStage]);
     } else {
       this._gameOver = true;
@@ -57,20 +57,24 @@ export class Game {
 
   private handleKeydown(e: KeyboardEvent) {
     if (e.key === "ArrowUp") {
-      this.map.player.move(0, -1, this.map.layout);
-    }
-    if (e.key === "ArrowDown") {
-      this.map.player.move(0, 1, this.map.layout);
+      this.map.player.moveUp(this.map.layout);
     }
     if (e.key === "ArrowLeft") {
-      this.map.player.move(-1, 0, this.map.layout);
+      this.map.player.moveLeft(this.map.layout);
+    }
+    if (e.key === "ArrowDown") {
+      this.map.player.moveDown(this.map.layout);
     }
     if (e.key === "ArrowRight") {
-      this.map.player.move(1, 0, this.map.layout);
+      this.map.player.moveRight(this.map.layout);
     }
   }
 
   get gameOver(): boolean {
     return this._gameOver;
+  }
+
+  get currentStage(): number {
+    return this._currentStage;
   }
 }
