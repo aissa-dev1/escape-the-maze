@@ -48,10 +48,6 @@ export class Map {
       for (let col = 0; col < this.layout[row].length; col++) {
         const cell = this.layout[row][col];
 
-        if (cell === null) {
-          this.board.ctx.fillStyle =
-            this.board.styles?.backgroundColor || "#1a1a1a";
-        }
         if (cell === 0) {
           this.board.ctx.fillStyle = "#1a1a1a";
         }
